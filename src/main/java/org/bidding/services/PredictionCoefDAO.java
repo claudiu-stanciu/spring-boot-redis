@@ -2,9 +2,9 @@ package org.bidding.services;
 
 public interface PredictionCoefDAO {
 
-  void setCoef(String iKey, Double iVal);
+  void setCoef(String field, Double val);
   
-  Double getCoef(String iKey);
+  Double getCoef(String field);
 
-  void delCoef(String iKey);
+  void delCoef(String field);
 }

@@ -1,11 +1,7 @@
 package org.bidding.services;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,11 +43,11 @@ public class PredictionService {
     String predList = "predictionCoefList.csv";
     try (BufferedReader br = new BufferedReader(
         new FileReader(getClass().getClassLoader().getResource(predList).getPath()))) {
-      String line;
-      String[] splitLine;
-      while ((line = br.readLine()) != null) {
-        splitLine = line.split(",");
-        predCoefDAO.setCoef(splitLine[0], Double.valueOf(splitLine[1]));
+      String coefInputLine;
+      String[] coefInputLineSplit;
+      while ((coefInputLine = br.readLine()) != null) {
+	  coefInputLineSplit = coefInputLine.split(",");
+        predCoefDAO.setCoef(coefInputLineSplit[0], Double.valueOf(coefInputLineSplit[1]));
       }
       logger.log(Level.INFO, "Initialized prediction coefficients DB");
     } catch (Exception ex) {

@@ -34,20 +34,20 @@ public class PredictionCoefDAORedis implements PredictionCoefDAO {
   }
 
   @Override
-  public void setCoef(String iKey, Double iVal) {
+  public void setCoef(String field, Double iVal) {
     Long reply = Long.valueOf(0L);
     try (Jedis jedis = pool.getResource()) {
-      jedis.hset(KEY, iKey, String.valueOf(iVal));
+      jedis.hset(KEY, field, String.valueOf(iVal));
     } catch (Exception ex) {
       logger.log(Level.WARNING, ex.getMessage());
     }
   }
 
   @Override
-  public Double getCoef(String iKey) {
+  public Double getCoef(String field) {
     Double coef = Double.valueOf(0);
     try (Jedis jedis = pool.getResource()) {
-      coef = Double.valueOf(jedis.hget(KEY, iKey));
+      coef = Double.valueOf(jedis.hget(KEY, field));
     } catch (Exception ex) {
       logger.log(Level.WARNING, ex.getMessage());
     }
@@ -55,9 +55,9 @@ public class PredictionCoefDAORedis implements PredictionCoefDAO {
   }
 
   @Override
-  public void delCoef(String iKey) {
+  public void delCoef(String field) {
     try (Jedis jedis = pool.getResource()) {
-      jedis.hdel(KEY, iKey);
+      jedis.hdel(KEY, field);
     } catch (Exception ex) {
       logger.log(Level.WARNING, ex.getMessage());
     }

@@ -15,8 +15,8 @@ public class PredictionController {
   PredictionService predService;
 
   @Autowired
-  PredictionController(PredictionService iPredService) {
-    this.predService = iPredService;
+  PredictionController(PredictionService predService) {
+    this.predService = predService;
 
   }
 
